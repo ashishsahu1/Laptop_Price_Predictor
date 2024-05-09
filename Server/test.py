@@ -3,8 +3,8 @@ import numpy as np
 import sys
 
 # Load the model and dataframe
-pipe = pickle.load(open('pipe.pkl', 'rb'))
-df = pickle.load(open('df.pkl', 'rb'))
+pipe = pickle.load(open('../Artifact/pipe.pkl', 'rb'))
+df = pickle.load(open('../Artifact/df.pkl', 'rb'))
 
 def predict_price(company, laptop_type, ram, weight, touchscreen, ips, screen_size, resolution, cpu, hdd, ssd, gpu, os):
     # Process inputs
