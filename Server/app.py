@@ -12,21 +12,22 @@ def index_page():
 @app.route("/specs", methods=['POST'])
 def laptop_specs():
     if request.method == 'POST':
-        brand = request.form['brand']
-        ltype = request.form['ltype']
-        lram = int(request.form['lram'])
-        lwt = float(request.form['lwt'])
-        ltouch_screen = request.form['ltouch_screen']
-        ips = request.form['ips']
-        lsize = float(request.form['lsize'])
-        lresolution = request.form['lresolution']
-        cpu = request.form['cpu']
-        hdd = int(request.form['hdd'])
-        ssd = int(request.form['ssd'])
-        gpu = request.form['gpu']
-        os = request.form['os']
+        brand = request.form.get('brand')
+        ltype = request.form.get('ltype')
+        lram = int(request.form.get('lram'))
+        lwt = float(request.form.get('lwt'))
+        ltouch_screen = request.form.get('ltouch_screen')
+        ips = request.form.get('ips')
+        lsize = float(request.form.get('lsize'))
+        lresolution = request.form.get('lresolution')
+        cpu = request.form.get('cpu')
+        hdd = int(request.form.get('hdd'))
+        ssd = int(request.form.get('ssd'))
+        gpu = request.form.get('gpu')
+        os = request.form.get('os')
         
         predicted_price = predict_price(brand, ltype, lram, lwt, ltouch_screen, ips, lsize, lresolution, cpu, hdd, ssd, gpu, os)
+        print("predicted_price", predicted_price)
         return {
             "Laptop_predicted_price": predicted_price
         }
