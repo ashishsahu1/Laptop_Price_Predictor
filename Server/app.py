@@ -3,12 +3,7 @@ from test import predict_price
 
 app = Flask(__name__)
 
-
-@app.route("/")
-def index_page():
-    return render_template('index.html')
-
-@app.route("/specs", methods=['POST'])
+@app.route("/", methods=['GET','POST'])
 def laptop_specs():
     if request.method == 'POST':
         brand = request.form.get('brand')
@@ -26,10 +21,14 @@ def laptop_specs():
         os = request.form.get('os')
         
         predicted_price = predict_price(brand, ltype, lram, lwt, ltouch_screen, ips, lsize, lresolution, cpu, hdd, ssd, gpu, os)
+        isDone = True
         print("predicted_price", predicted_price)
-        return {
-            "Laptop_predicted_price": predicted_price
-        }
-
+        print("Inside Post")
+        return render_template('index.html', predicted_price = predicted_price, isDone = isDone)
+    
+    else:
+        print("Inside Get")
+        return render_template('index.html')
+    
 if __name__ == "__main__":
     app.run(debug=True)
